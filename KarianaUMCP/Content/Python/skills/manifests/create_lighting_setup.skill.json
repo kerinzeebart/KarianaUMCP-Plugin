@@ -1,0 +1,58 @@
+{
+  "name": "create_lighting_setup",
+  "description": "Create a basic three-point lighting setup for a scene",
+  "version": "1.0.0",
+  "parameters": {
+    "center": {
+      "type": "array",
+      "description": "Center point of the lighting setup [x, y, z]",
+      "default": [0, 0, 0]
+    },
+    "intensity": {
+      "type": "number",
+      "description": "Base light intensity",
+      "default": 5000
+    }
+  },
+  "steps": [
+    {
+      "name": "Create key light",
+      "action": "spawn_actor",
+      "parameters": {
+        "actor_class": "PointLight",
+        "name": "KeyLight",
+        "location": [500, -300, 400]
+      },
+      "output": "key_light"
+    },
+    {
+      "name": "Create fill light",
+      "action": "spawn_actor",
+      "parameters": {
+        "actor_class": "PointLight",
+        "name": "FillLight",
+        "location": [-400, -200, 200]
+      },
+      "output": "fill_light"
+    },
+    {
+      "name": "Create back light",
+      "action": "spawn_actor",
+      "parameters": {
+        "actor_class": "PointLight",
+        "name": "BackLight",
+        "location": [0, 500, 500]
+      },
+      "output": "back_light"
+    },
+    {
+      "name": "Report setup complete",
+      "action": "execute_python",
+      "parameters": {
+        "code": "print('Three-point lighting setup created:')\nprint('  - KeyLight: Main light source')\nprint('  - FillLight: Softens shadows')\nprint('  - BackLight: Separates subject from background')\nresult = {'setup': 'complete', 'lights': ['KeyLight', 'FillLight', 'BackLight']}"
+      },
+      "output": "summary"
+    }
+  ],
+  "continue_on_error": true
+}

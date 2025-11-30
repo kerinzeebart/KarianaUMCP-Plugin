@@ -1,0 +1,28 @@
+{
+    "FileVersion": 3,
+    "Version": 1,
+    "VersionName": "1.0.0",
+    "FriendlyName": "Kariana UMCP",
+    "Description": "Unified MCP (Model Context Protocol) plugin for AI-powered Unreal Engine control. Features 52+ battle-tested tools, Skills system, Blueprint Intelligence, Gradio UI, and ngrok remote access.",
+    "Category": "AI Integration",
+    "CreatedBy": "Kariana.ai",
+    "CreatedByURL": "https://github.com/kerinzeebart",
+    "DocsURL": "https://github.com/kerinzeebart/Kariana-UMCP",
+    "MarketplaceURL": "",
+    "SupportURL": "https://github.com/kerinzeebart/Kariana-UMCP/issues",
+    "CanContainContent": true,
+    "IsBetaVersion": false,
+    "IsExperimentalVersion": false,
+    "Installed": false,
+    "Modules": [],
+    "Plugins": [
+        {
+            "Name": "PythonScriptPlugin",
+            "Enabled": true
+        },
+        {
+            "Name": "RemoteControl",
+            "Enabled": true
+        }
+    ]
+}
