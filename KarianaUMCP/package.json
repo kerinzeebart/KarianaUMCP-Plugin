@@ -1,0 +1,19 @@
+{
+  "name": "kariana-umcp-bridge",
+  "version": "1.0.0",
+  "description": "MCP bridge for KarianaUMCP - Claude Desktop integration",
+  "type": "module",
+  "main": "kariana-mcp-bridge.js",
+  "scripts": {
+    "start": "node kariana-mcp-bridge.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "Kariana.ai",
+  "license": "MIT"
+}

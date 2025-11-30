@@ -1,0 +1,39 @@
+{
+  "name": "organize_level",
+  "description": "Organize actors in the current level into folders by type",
+  "version": "1.0.0",
+  "parameters": {
+    "create_folders": {
+      "type": "boolean",
+      "description": "Whether to create folders for organization",
+      "default": true
+    }
+  },
+  "steps": [
+    {
+      "name": "Get all actors",
+      "action": "list_actors",
+      "parameters": {
+        "include_details": true
+      },
+      "output": "actors"
+    },
+    {
+      "name": "Analyze actor types",
+      "action": "execute_python",
+      "parameters": {
+        "code": "# Group actors by class\nactors = context.get('actors', {}).get('actors', [])\ngrouped = {}\nfor actor in actors:\n    actor_class = actor.get('class', 'Unknown') if isinstance(actor, dict) else 'Unknown'\n    if actor_class not in grouped:\n        grouped[actor_class] = []\n    name = actor.get('name', str(actor)) if isinstance(actor, dict) else str(actor)\n    grouped[actor_class].append(name)\nresult = {'groups': grouped, 'total_actors': len(actors), 'class_count': len(grouped)}"
+      },
+      "output": "analysis"
+    },
+    {
+      "name": "Report organization",
+      "action": "execute_python",
+      "parameters": {
+        "code": "analysis = context.get('analysis', {})\ngroups = analysis.get('result', {}).get('groups', {})\nprint(f\"Found {len(groups)} actor types:\")\nfor class_name, actors in groups.items():\n    print(f\"  {class_name}: {len(actors)} actors\")\nresult = {'organized': True, 'summary': groups}"
+      },
+      "output": "report"
+    }
+  ],
+  "continue_on_error": false
+}
